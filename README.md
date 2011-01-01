@@ -1,22 +1,22 @@
 # Arduino ruby gem
 
-Arduino is a prototyping API for Arduino in Ruby. Helps prototype Arduino programs quickly from the computer, without the need to burn to the board frequently.
+This gem is a prototyping API for Arduino in Ruby. Helps prototype Arduino programs quickly from the computer, without the need to burn to the board frequently.
 
 #### Setup:
 1. Install the gem: `gem install arduino`
-2. Load arduino.pde onto your Arduino dev board (just once and for all).
+2. Load [arduino.pde](https://github.com/SingAlong/arduino/raw/master/arduino.pde) onto your Arduino dev board (just once and for all).
 3. Import the arduino gem: `require "arduino"`
 
 ## Methods
 
-#### Initializing:
+### Initializing:
 
 	#Arduino.new(port, baudrate)
 	board = Arduino.new("/dev/ttyUSB1")
 
 Port is something like "/dev/ttyUSB0" on linux and COM*x* (COM1/COM2) on windows. Baudrate is optional. It is 115200 by default.
 
-#### Setting output pins
+### Setting output pins
 
 The output pins must be set explicitly. 
 
@@ -43,25 +43,25 @@ The output pins must be set explicitly.
 
 ## Usage example
 
-			# This is the blink program.
+		# This is the blink program.
 
-      require "arduino"
+		require "arduino"
 
-			#specify the port Baudrate is optional and set to 115200 by default
-			myBoard = Arduino.new("/dev/ttyUSB1")
+		#specify the port Baudrate is optional and set to 115200 by default
+		myBoard = Arduino.new("/dev/ttyUSB1")
 
-			#declare output pins
-			myBoard.output(13)
+		#declare output pins
+		myBoard.output(13)
 
-			#perform operations
-			10.times do
-				myBoard.setHigh(13)
-				sleep(1)
-				myBoard.setLow(13)
-				sleep(1)
-			end
+		#perform operations
+		10.times do
+			myBoard.setHigh(13)
+			sleep(1)
+			myBoard.setLow(13)
+			sleep(1)
+		end
 
-# Developed for the love of programming by
+# Developed for the love of creating stuff by
 > &copy; 2010 Akash Manohar <akash@akash.im>
 > under the MIT License
 
