@@ -48,16 +48,16 @@ The output pins must be set explicitly.
 		require "arduino"
 
 		#specify the port Baudrate is optional and set to 115200 by default
-		myBoard = Arduino.new("/dev/ttyUSB1")
+		board = Arduino.new("/dev/ttyUSB1")
 
 		#declare output pins
-		myBoard.output(13)
+		board.output(13)
 
 		#perform operations
 		10.times do
-			myBoard.setHigh(13)
+			board.setHigh(13)
 			sleep(1)
-			myBoard.setLow(13)
+			board.setLow(13)
 			sleep(1)
 		end
 

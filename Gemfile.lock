@@ -1,7 +1,8 @@
 PATH
   remote: .
   specs:
-    arduino (0.1)
+    arduino (0.3.1)
+      serialport (>= 1.0.4)
 
 GEM
   remote: http://rubygems.org/
@@ -13,4 +14,4 @@ PLATFORMS
 
 DEPENDENCIES
   arduino!
-  serialport
+  serialport (>= 1.0.4)
