@@ -13,18 +13,18 @@ Gem::Specification.new do |s|
   s.summary     = %q{Arduino Prototyping API for Ruby}
   s.description = %q{A ruby library to talk to Arduino without having to burn programs repeatedly to the board}
 	s.post_install_message = %q{
-	=========================================
-	Thank you for installing the arduino gem
-	-----------------------------------------
+==============================================
+Thank you for installing the arduino gem
+----------------------------------------------
 	
-	Load the arduino.pde program from http://ln.akash.im/arduino.pde to your board before using this library
+Load the arduino.pde program from http://ln.akash.im/arduino.pde to your board before using this library
 	
-	Source: https://github.com/SingAlong/arduino/
-	
-	--
-	SingAlong
-	(http://akash.im)
-	=========================================
+Source: https://github.com/SingAlong/arduino/
+
+--
+SingAlong
+(http://akash.im)
+==============================================
 	}
   s.rubyforge_project = "arduino"
 
