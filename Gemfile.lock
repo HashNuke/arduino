@@ -1,0 +1,16 @@
+PATH
+  remote: .
+  specs:
+    arduino (0.1)
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    serialport (1.0.4)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  arduino!
+  serialport
