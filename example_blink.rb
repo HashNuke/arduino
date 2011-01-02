@@ -1,15 +1,17 @@
 require "./lib/arduino"
 
 #specify the port as an argument
-myBoard = Arduino.new('/dev/ttyUSB0')
+board = Arduino.new('/dev/ttyUSB0')
 
 #declare output pins
-myBoard.output(13)
+board.output(13)
 
 #perform operations
 10.times do
-  myBoard.setHigh(13)
+  board.setHigh(13)
+  puts "High" if board.getState(13)
   sleep(1)
-  myBoard.setLow(13)
+  board.setLow(13)
+  puts "Low" if !board.getState(13)
   sleep(1)
 end

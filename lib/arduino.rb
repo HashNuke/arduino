@@ -18,6 +18,7 @@ class Arduino
 	  @serial.sync
 	  @port = port
 	  @outputPins = []
+	  @pinStates = {}
 	end
 
 	# Print information about connected board
@@ -37,25 +38,49 @@ class Arduino
 	  else
 		 	raise ArgumentError, "Arguments must be a list of pin numbers"
 	  end
-	end
-
-	# Get state of a digital pin. Returns true if high and false if low.
-	def getState(pin)
-	  sendData('2')
-	  sendPin(pin)
-	  return formatPinState(getData())
+	  return pinList
 	end
 
 	# Set a pin state to low
 	def setLow(pin)
+		saveState(pin, false)
 	  sendData('0')
 	  sendPin(pin)
 	end
 	
+	def isLow?(pin)
+		if !getState(pin)
+			return true
+		else
+			return false
+		end
+	end
+	
 	# Set a pin state to high
 	def setHigh(pin)
+		saveState(pin, true)
 	  sendData('1')
 	  sendPin(pin)
+	end
+	
+	def isHigh?(pin)
+		if getState(pin)
+			return true
+		else
+			return false
+		end
+	end
+	
+	def saveState(pin, state)
+		@pinStates[pin.to_s] = state
+	end
+
+		# Get state of a digital pin. Returns true if high and false if low.
+	def getState(pin)
+		if @pinStates.key?(pin.to_s)
+			return @pinStates[pin.to_s]
+		end
+	  return false
 	end
 	
 	# Write to an analog pin
@@ -109,10 +134,4 @@ class Arduino
 	  cleanData = @serial.readlines()
 	  cleanData = cleanData.join("").gsub("\n","").gsub("\r","")
 	end
-
-	def formatPinState(pinValue)
-	  return true if pinValue=="1"
-	  return false #if pinValue=="0"
-	end
-
 end
