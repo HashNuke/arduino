@@ -1,13 +1,9 @@
-# The program takes an initial word or phrase from
-# the command line (or in the absence of a
-# parameter from the first line of standard
-# input).  In then reads successive words or
-# phrases from standard input and reports whether
-# they are angrams of the first word.
+# A ruby library to talk to Arduino without 
+# having to burn programs repeatedly to the board.
 #
-# Author::    Dave Thomas  (mailto:dave@x.y)
-# Copyright:: Copyright (c) 2002 The Pragmatic Programmers, LLC
-# License::   Distributes under the same terms as Ruby
+# Author::    Akash Manohar  (akash@akash.im)
+# Copyright:: Copyright (c) 2010 Akash Manohar
+# License::   MIT License
 
 require "serialport"
 

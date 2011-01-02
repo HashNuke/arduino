@@ -1,7 +1,7 @@
-require "arduino"
+require "./lib/arduino"
 
 #specify the port as an argument
-myBoard = Arduino.new('/dev/ttyUSB2')
+myBoard = Arduino.new('/dev/ttyUSB0')
 
 #declare output pins
 myBoard.output(13)

@@ -3,8 +3,8 @@ $:.push File.expand_path("../lib", __FILE__)
 
 Gem::Specification.new do |s|
   s.name        = "arduino"
-  s.version     = "0.3.1"
-  s.date 				= %q{2010-01-01}
+  s.version     = "0.3.2"
+  s.date 				= %q{2011-01-01}
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Akash Manohar"]
   s.email       = ["akash@akash.im"]
