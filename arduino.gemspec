@@ -3,7 +3,7 @@ $:.push File.expand_path("../lib", __FILE__)
 
 Gem::Specification.new do |s|
   s.name        = "arduino"
-  s.version     = "0.3.3"
+  s.version     = "0.4"
   s.date 				= %q{2011-01-01}
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Akash Manohar"]
@@ -18,10 +18,10 @@ Thank you for installing the arduino gem
 	
 Load the arduino.pde program from http://ln.akash.im/arduino.pde to your board before using this library
 	
-Source: https://github.com/SingAlong/arduino/
+Source: https://github.com/HashNuke/arduino/
 
 --
-SingAlong
+@HashNuke
 (http://akash.im)
 ==============================================
 	}

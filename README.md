@@ -4,7 +4,7 @@ This gem is a prototyping API for Arduino in Ruby. Helps prototype Arduino progr
 
 #### Setup:
 1. Install the gem: `gem install arduino`
-2. Load [arduino.pde](https://github.com/SingAlong/arduino/raw/master/arduino.pde) onto your Arduino dev board (just once and for all).
+2. Load [arduino.pde](https://github.com/HashNuke/arduino/raw/master/arduino.pde) onto your Arduino dev board (just once and for all).
 3. Import the arduino gem: `require "arduino"`
 
 ## Methods
@@ -64,4 +64,10 @@ The output pins must be set explicitly.
 # Developed for the love of creating stuff by
 > &copy; 2010 Akash Manohar <akash@akash.im>
 > under the MIT License
+
+# Credits
+
+Thanks to the following people:
+
+* [@unsymbol](http://github.com/unsymbol) - for fixing the Ubuntu reset problem
 
