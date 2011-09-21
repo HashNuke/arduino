@@ -119,7 +119,11 @@ class Arduino
     
     # close serial connection to connected board
     def close
+        # stops executing arduino code
         @serial.write '5'.chr  
+        # resets the arduino board (not on windows)   
+        @serial.dtr=(0) 
+        # close serial connection
         @serial.close
         p "closed"
     end
