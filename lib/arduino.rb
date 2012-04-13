@@ -1,9 +1,9 @@
-# A ruby library to talk to Arduino without 
+# A ruby library to talk to Arduino without
 # having to burn programs repeatedly to the board.
 #
-# Author::    Akash Manohar  (akash@akash.im)
+# Author:: Akash Manohar (akash@akash.im)
 # Copyright:: Copyright (c) 2010 Akash Manohar
-# License::   MIT License
+# License:: MIT License
 
 require "serialport"
 
@@ -19,7 +19,7 @@ class Arduino
         stop_bits = 1
         parity = SerialPort::NONE
 
-        @serial = SerialPort.new port, baudrate
+        @serial = SerialPort.new(port, baudrate, data_bits, stop_bits, parity)
         @serial.read_timeout = 2
         @serial.sync
         
@@ -36,7 +36,7 @@ class Arduino
     # Set output pins. This is a must.
     def output(*pinList)
         sendData(pinList.length)
-        if pinList.class==Array
+        if(pinList.class == Array)
             @outputPins = pinList
             pinList.each do |pin|
                 sendPin(pin)
@@ -51,7 +51,7 @@ class Arduino
     # Set a pin state to low
     def setLow(pin)
         saveState(pin, false)
-        sendData('0')
+        sendData(0)
         sendPin(pin)
     end
     
@@ -66,7 +66,7 @@ class Arduino
     # Set a pin state to high
     def setHigh(pin)
         saveState(pin, true)
-        sendData('1')
+        sendData(1)
         sendPin(pin)
     end
     
@@ -92,11 +92,11 @@ class Arduino
     
     # Write to an analog pin
     def analogWrite(pin, value)
-        sendData('3')
+        sendData(3)
         fullHexValue = value.to_s(base=16)
         hexValue = hexValue[2..fullHexValue.length]
         if(hexValue.length==1)
-            sendData('0')
+            sendData(0)
         else
             sendData(hexValue[0])
         end
@@ -105,7 +105,7 @@ class Arduino
     
     # Read from an analog pin
     def analogRead(pin)
-        sendData('4')
+        sendData(4)
         sendPin(pin)
         getData()
     end
@@ -120,9 +120,10 @@ class Arduino
     # close serial connection to connected board
     def close
         # stops executing arduino code
-        @serial.write '5'.chr  
-        # resets the arduino board (not on windows)   
-        @serial.dtr=(0) 
+        #@serial.write '5'[0].chr
+        @serial.write 5
+        # resets the arduino board (not on windows)
+        @serial.dtr = (0)
         # close serial connection
         @serial.close
         p "closed"
@@ -131,15 +132,17 @@ class Arduino
     private
     
     def sendPin(pin)
-        pinInChar = (pin+48)
-        sendData(pinInChar)
+        #pinInChar = (pin + 48)
+        #sendData(pinInChar)
+        sendData(pin)
     end
 
     def sendData(serialData)
         while true
-            break if getData()=="?"
+            break if(getData() == "?")
         end
-        s = String(serialData.chr)
+        # send all the data as binary
+        s = serialData.chr
         x = @serial.write s
     end
     
