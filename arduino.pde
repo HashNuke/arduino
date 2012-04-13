@@ -26,23 +26,23 @@ void loop()
   {
     if(Serial.available()>0)
     {
-      cmd = int(Serial.read()) - 48;
+      cmd = Serial.read();
   
       if(cmd==0) //set digital low
       {
-        cmd_arg[0] = int(readData()) - 48;
+        cmd_arg[0] = readData();
         digitalWrite(cmd_arg[0],LOW);
       }
   
       if(cmd==1) //set digital high
       {
-        cmd_arg[0] = int(readData()) - 48;
+        cmd_arg[0] = readData();
         digitalWrite(cmd_arg[0],HIGH);
       }
   
       if(cmd==2) //get digital value
       {
-        cmd_arg[0] = int(readData()) - 48;
+        cmd_arg[0] = readData();
         cmd_arg[0] = digitalRead(cmd_arg[0]);
         Serial.println(cmd_arg[0]);
       }
@@ -50,14 +50,14 @@ void loop()
       if(cmd==3) // set analog value
       {
         Serial.println("I'm in the right place");
-        cmd_arg[0] = int(readData()) - 48;
+        cmd_arg[0] = readData();
         cmd_arg[1] = readHexValue();
         analogWrite(cmd_arg[0],cmd_arg[1]);
       }
   
       if(cmd==4) //read analog value
       {
-        cmd_arg[0] = int(readData()) - 48;
+        cmd_arg[0] = readData();
         cmd_arg[0] = analogRead(cmd_arg[0]);
         Serial.println(cmd_arg[0]);
       }
@@ -137,13 +137,15 @@ void askCmd()
 
 void setupPins()
 {
+  // wait for serial data, to define the outputs
   while(Serial.available()<1)
   {
-    // get number of output pins and convert to int
-    cmd = int(readData()) - 48;
-    for(int i=0; i<cmd; i++)
+    // first byte of number of pins, 
+    // then each byte is a pin to activate
+    cmd = readData();
+    for(int i=0; i < cmd; i++)
     {
-      cmd_arg[0] = int(readData()) - 48;
+      cmd_arg[0] = readData();
       pinMode(cmd_arg[0], OUTPUT);
     }
     break;
