@@ -25,6 +25,7 @@ class Arduino
         
         @port = port
         @outputPins = []
+        @inputPins = []
         @pinStates = {}
     end
     
@@ -33,20 +34,35 @@ class Arduino
         "Arduino is on port #{@port} at #{@serial.baud} baudrate"
     end
     
-    # Set output pins. This is a must.
-    def output(*pinList)
-        sendData(pinList.length)
-        if(pinList.class == Array)
-            @outputPins = pinList
-            pinList.each do |pin|
-                sendPin(pin)
-            end
-        else
-            raise ArgumentError, "Arguments must be a list of pin numbers"
-        end
-        puts "return pinlist"
-        return pinList
+   # Set output pins. This is a must.
+   def output(*pinList)
+      sendData(pinList.length)
+      if(pinList.class == Array)
+         @outputPins = pinList
+         pinList.each do |pin|
+            sendPin(pin)
+         end
+      else
+         raise ArgumentError, "Arguments must be a list of pin numbers"
+      end
+      puts "return output pinlist"
+      return pinList
     end
+    
+   # Set output pins. This is a must.
+   def input(*pinList)
+      sendData(pinList.length)
+      if(pinList.class == Array)
+         @inputPins = pinList
+         pinList.each do |pin|
+            sendPin(pin)
+         end
+      else
+         raise ArgumentError, "Arguments must be a list of pin numbers"
+      end
+      puts "return input pinlist"
+      return pinList
+   end
     
     # Set a pin state to low
     def setLow(pin)
@@ -84,10 +100,18 @@ class Arduino
     
     # Get state of a digital pin. Returns true if high and false if low.
     def getState(pin)
-        if @pinStates.key?(pin.to_s)
-            return @pinStates[pin.to_s]
+        sendData(2)
+        sendPin(pin)
+
+        while true
+            rval = @serial.getbyte()
+            if(rval == 0)
+               return(false)
+            end
+            if(rval == 1)
+               return(true)
+            end
         end
-        return false
     end
     
     # Write to an analog pin
@@ -109,7 +133,7 @@ class Arduino
         sendPin(pin)
         getData()
     end
-    
+ 
     # set all pins to low
     def turnOff
         @outputPins.each do |pin|
@@ -120,10 +144,14 @@ class Arduino
     # close serial connection to connected board
     def close
         # stops executing arduino code
-        #@serial.write '5'[0].chr
-        @serial.write 5
+
+        # reset the serial communication in the Arduino code
+        sendData(5)
+
         # resets the arduino board (not on windows)
+        # Data Terminal Ready
         @serial.dtr = (0)
+
         # close serial connection
         @serial.close
         p "closed"
@@ -132,8 +160,6 @@ class Arduino
     private
     
     def sendPin(pin)
-        #pinInChar = (pin + 48)
-        #sendData(pinInChar)
         sendData(pin)
     end
 
