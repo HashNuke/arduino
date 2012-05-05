@@ -20,26 +20,26 @@ Port is something like "/dev/ttyUSB0" on linux and COM*x* (COM1/COM2) on windows
 
 The output pins must be set explicitly. 
 
-	#Arduino.output(list_of_output_pins)
-	board.output(10,11,13)
+    # Arduino#output(list_of_output_pins)
+    board.output(10,11,13)
 
 
 **Digital I/O**
 
-1. `Arduino.setHigh(pin)`
-2. `Arduino.setLow(pin)`
-3. `Arduino.getState(pin)` - returns `true` if pin state is high, else it returns `false`
+1. `Arduino#higher(pin)`
+2. `Arduino#lower(pin)`
+3. `Arduino#state_of(pin)` - returns `:high` if pin state is high, else it returns `:low`
 
 **Analog I/O**
 
-1. `Arduino.analogRead(pin)` - returns the analog value
-2. `Arduino.analogRead(pin, value)` - sets the analog value
+1. `Arduino#analog_read(pin)` - returns the analog value
+2. `Arduino#analog_set(pin, value)` - sets the analog value
 
 **Misc**
 
-1.) `Arduino.turnOff` - sets all the pins to low state
+1.) `Arduino#turn_off` - sets all the pins to low state
 
-2.) `Arduino.close` - closes serial connection. Using this makes sure that you won't have to disconnect & reconnect the Arduino again to recover the serial port.
+2.) `Arduino#close` - closes serial connection. Using this makes sure that you won't have to disconnect & reconnect the Arduino again to recover the serial port.
 
 ## Usage example
 
@@ -55,19 +55,21 @@ The output pins must be set explicitly.
 
 		#perform operations
 		10.times do
-			board.setHigh(13)
-			sleep(1)
-			board.setLow(13)
-			sleep(1)
+		  board.higher(13)
+		  sleep(1)
+		  board.lower(13)
+		  sleep(1)
 		end
 
 # Developed for the love of creating stuff by
-> &copy; 2010 Akash Manohar <akash@akash.im>
+> &copy; 2010-2012 Akash Manohar <akash@akash.im>
 > under the MIT License
 
 # Credits
 
 Thanks to the following people:
 
-* [@unsymbol](http://github.com/unsymbol) - for fixing the Ubuntu reset problem
+* Philip Cunningham ([@unsymbol](http://github.com/unsymbol)) - for fixing the Ubuntu reset problem
+
+* Mike Cannan ([@mikecannan](http://github.com/mikecannan)) - for updating the gem to use binary communication and for adding digital inputs
 
