@@ -117,14 +117,9 @@ class Arduino
     # Write to an analog pin
     def analogWrite(pin, value)
         sendData(3)
-        fullHexValue = value.to_s(base=16)
-        hexValue = hexValue[2..fullHexValue.length]
-        if(hexValue.length==1)
-            sendData(0)
-        else
-            sendData(hexValue[0])
-        end
-        sendData(hexValue[1])
+        sendPin(pin)
+        sendData((value / 16).to_s(16))
+        sendData((value % 16).to_s(16))
     end
     
     # Read from an analog pin
@@ -154,7 +149,7 @@ class Arduino
 
         # close serial connection
         @serial.close
-        p "closed"
+        puts "closed"
     end
     
     private
@@ -168,8 +163,7 @@ class Arduino
             break if(getData() == "?")
         end
         # send all the data as binary
-        s = serialData.chr
-        x = @serial.write s
+        @serial.write serialData.chr
     end
     
     def getData
