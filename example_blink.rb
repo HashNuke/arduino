@@ -6,7 +6,10 @@ port = '/dev/ttyUSB0'
 board = Arduino.new(port)
 
 #declare output pins
-board.output(13)
+board.output(13) # manditory function call
+#declare input pins
+board.input()    # manditory function call
+
 
 #perform operations
 5.times do
