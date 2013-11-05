@@ -73,5 +73,5 @@ Thanks to the following people:
 
 * Philip Cunningham ([@unsymbol](http://github.com/unsymbol)) - for fixing the Ubuntu reset problem
 
-* Mike Cannan ([@mikecannan](http://github.com/mikecannan)) - for updating the gem to use binary communication and for adding digital inputs
+* Mike Canann ([@mikecanann](http://github.com/mikecanann)) - for updating the gem to use binary communication and for adding digital inputs
 
