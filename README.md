@@ -24,6 +24,8 @@ The output pins must be set explicitly.
     board.output(10,11,13)
 
 
+You don't need to declare input pins since digital pins are input by default according to the page on the Arduino site - <http://www.arduino.cc/en/Tutorial/DigitalPins>
+
 **Digital I/O**
 
 1. `Arduino#higher(pin)`
