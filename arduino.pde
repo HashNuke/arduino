@@ -52,7 +52,6 @@ void loop()
          }
          else if(cmd == 3) // set analog value
          {
-            Serial.println("I'm in the right place");
             cmd_arg[0] = readData();
             cmd_arg[1] = readHexValue();
             analogWrite(cmd_arg[0],cmd_arg[1]);
@@ -95,6 +94,7 @@ int readHexValue()
    int strval[2];
    int converted_str;
 
+   askData();
    while(1)
    {
       if(Serial.available() > 0)
@@ -105,7 +105,6 @@ int readHexValue()
    }
 
    askData();
-
    while(1)
    {
       if(Serial.available() > 0)
