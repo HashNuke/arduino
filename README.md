@@ -24,6 +24,8 @@ The output pins must be set explicitly.
     board.output(10,11,13)
 
 
+You don't need to declare input pins since digital pins are input by default according to the page on the Arduino site - <http://www.arduino.cc/en/Tutorial/DigitalPins>
+
 **Digital I/O**
 
 1. `Arduino#higher(pin)`
@@ -71,5 +73,5 @@ Thanks to the following people:
 
 * Philip Cunningham ([@unsymbol](http://github.com/unsymbol)) - for fixing the Ubuntu reset problem
 
-* Mike Cannan ([@mikecannan](http://github.com/mikecannan)) - for updating the gem to use binary communication and for adding digital inputs
+* Mike Canann ([@mikecanann](http://github.com/mikecanann)) - for updating the gem to use binary communication and for adding digital inputs
 
